@@ -10,7 +10,7 @@ case class ParsingFailure(message: String, underlying: Throwable) extends Error 
 }
 
 case class DecodingFailure(message: String, history: List[HistoryOp]) extends Error {
-  override def getMessage: String = message + history.mkString(",")
+  override def getMessage: String = s"$message: ${ history.mkString(",") }"
 
   def withMessage(message: String): DecodingFailure = copy(message = message)
 }
